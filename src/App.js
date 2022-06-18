@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import TaskCreator from "./components/TaskCreator";
 
-function App() {
+const App = () => {
+
+  const [taskItems, setTaskItems] = useState([
+    { name: "Mi primer tarea", done: false },
+    { name: "Mi segunda tarea", done: false },
+    { name: "Mi tercera tarea", done: false },
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TaskCreator />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            taskItems.map(task => (
+              <tr>
+                {task.name}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+
     </div>
   );
 }
