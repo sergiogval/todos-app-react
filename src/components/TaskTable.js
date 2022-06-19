@@ -1,6 +1,17 @@
 import React from 'react'
+import TaskRow from './TaskRow'
 
-const TaskTable = ({tasks}) => {
+const TaskTable = ({ tasks, toggleTask, showCompleted = false }) => {
+
+  const taskTableRows = (doneValue) => {
+    return (
+      tasks
+      .filter(task => task.done === doneValue)
+      .map(task => (
+        <TaskRow task={task} key={task.name} toggleTask={toggleTask} />  
+      ))
+    )
+    }
   return (
     <table>
       <thead>
@@ -10,16 +21,9 @@ const TaskTable = ({tasks}) => {
       </thead>
       <tbody>
         {
-          tasks.map(task => (
-            <tr key={task.name}>
-              <td>
-                {task.name}
-                <input type="checkbox" checked={task.done} onChange= />
-              </td>
-            </tr>
-          ))
+          taskTableRows(showCompleted)
         }
-      </tbody>
+        </tbody>
     </table>
 
   )

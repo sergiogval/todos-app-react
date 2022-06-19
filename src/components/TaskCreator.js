@@ -18,7 +18,7 @@ const TaskCreator = ({createNewTask}) => {
       value={newTaskName}
       onChange={(e) => setNewTaskName(e.target.value)}
     />
-    <input type="submit" value="Save task" onClick={() => alert(newTaskName)} />
+    <input type="submit" value="Save task" onClick={() => console.log(newTaskName)} />
   </form>
   )
 }
