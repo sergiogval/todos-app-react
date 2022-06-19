@@ -1,16 +1,20 @@
 import React from 'react'
 
-const VisibilityControl = ({ setShowCompleted }) => {
+const VisibilityControl = ({ isChecked, setShowCompleted, cleanTasks }) => {
 
 
   const handleDelete = () => {
-    console.log('cleaning')
+   if (window.confirm('Are you sure you want to delete this task?')) {
+    cleanTasks()
+   }
   }
 
   return (
-    <div>
-      <input type='checkbox' onChange={(e) => setShowCompleted(e.target.checked)} />{" "} <label>Show tasks done</label>
-      <button onClick={handleDelete}>
+    <div className='d-flex justify-content-between bg-secondary text-white text-center p-2 boder-secondary '>
+      <div className='form-check form-switch'>
+      <input type='checkbox' checked={isChecked} className='form-check-input'  onChange={(e) => setShowCompleted(e.target.checked)} />{" "} <label>Show tasks done</label>
+      </div>
+      <button onClick={handleDelete} className='btn btn-danger btn-sm'>
         clear
       </button>
     </div>
